@@ -1,10 +1,15 @@
+export interface IPostcard {
+    total: number;
+    items: ICard[];
+}
+
 export interface ICard {
     id: string;
     description: string;
     image: string;
     title: string;
     category: string;
-    price: number;
+    price: number | null;
 }
 
 export interface IUserInformation {
@@ -23,19 +28,23 @@ export interface IAppState {
     validationError: boolean;
     sumOrder: number;
 
-    setCardList(data: ICard[]): void;
     getCard(id: string): ICard[];
     addCardBusket(card: ICard): void;
     deleteCardBusket(id: string): void;
+    clearBasket(): void;
+    getTotalBasket(): number;
     costOrder(prise: number[]): number;
-    setUserInformation(data: IUserInformation): void;
-    getUserInformation(): IUserInformation;
+    setUserInformationOne(data: TUserInformationOne): void;
+    setUserInformationTwo(data: TUserInformationTwo): void;
+    validationUserInformationOne(): void;
+    validationUserInformationTwo(): void;
     cleanUserInformation(): void;
-    validationMethod(data: Record<keyof IUserInformation, string>): boolean;
+    setCardList(data: ICard[]): void;
+    setPreview(item: ICard): void;
 }
 
 export interface ISendOrder extends IUserInformation{
-    id: string[];
+    items: string[];
     total: number;
 }
 
