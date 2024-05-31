@@ -1,22 +1,17 @@
-export interface IPostcard {
-    total: number;
-    items: ICard[];
-}
-
 export interface ICard {
-    id: string;
-    description: string;
-    image: string;
-    title: string;
-    category: string;
-    price: number | null;
+    id?: string;
+    description?: string;
+    image?: string;
+    title?: string;
+    category?: string;
+    price?: number | null;
 }
 
 export interface IUserInformation {
-    paymentMethod?: string;
+    payment?: string;
     address?: string;
     email?: string;
-    tell?: string;
+    phone?: string;
 }
 
 export interface IAppState {
@@ -24,20 +19,16 @@ export interface IAppState {
     order: ISendOrder;
     basket: ICard[];
     openCard: ICard;
-    isOrderReady: string | null;
-    validationError: boolean;
-    sumOrder: number;
+    formErrors: TFormErrors;
 
-    getCard(id: string): ICard[];
     addCardBusket(card: ICard): void;
     deleteCardBusket(id: string): void;
     clearBasket(): void;
     getTotalBasket(): number;
     costOrder(prise: number[]): number;
-    setUserInformationOne(data: TUserInformationOne): void;
-    setUserInformationTwo(data: TUserInformationTwo): void;
-    validationUserInformationOne(): void;
-    validationUserInformationTwo(): void;
+    setUserInformation(field: keyof IUserInformation, value: string): void;
+    validationUserInformationOrder(): void;
+    validationUserInformationContacts(): void;
     cleanUserInformation(): void;
     setCardList(data: ICard[]): void;
     setPreview(item: ICard): void;
@@ -45,7 +36,7 @@ export interface IAppState {
 
 export interface ISendOrder extends IUserInformation{
     items: string[];
-    total: number;
+    total: number | null;
 }
 
 export interface IOrderResult {
@@ -53,12 +44,21 @@ export interface IOrderResult {
     total: number;
 }
 
-export type TUserInformationOne = Pick<IUserInformation, 'paymentMethod' | 'address'>;
+export type TUserInformationOne = Pick<IUserInformation, 'payment' | 'address'>;
 
-export type TUserInformationTwo = Pick<IUserInformation, 'email' | 'tell'>;
+export type TUserInformationTwo = Pick<IUserInformation, 'email' | 'phone'>;
 
 export type TCardBusketItem = Pick<ICard, 'id' | 'title' | 'price'>;
 
+export type TFormErrors = Partial<Record<keyof ISendOrder, string>>;
+
+export type CardCategory = {
+    другое: string;
+    'софт-скил': string;
+    дополнительное: string;
+    кнопка: string;
+    'хард-скил': string;
+};
 
 
 
