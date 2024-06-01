@@ -237,11 +237,15 @@ events.on('contacts:submit', () => {
         .then((result) => {
             events.emit('orderSuccess:successfully', result)
         })
+        .catch(err => {
+            console.log(err)
+        })
 })
 
+//установка обработчика: отрисовки success
 events.on('orderSuccess:successfully', (result: IOrderResult) => {
     appData.clearBasket();
-    appData.cleanUserInformation();
+    appData.cleanOrderInformation();
     return modal.render({
         content: success.render({
             cost: result.total

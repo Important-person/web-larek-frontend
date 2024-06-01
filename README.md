@@ -92,7 +92,7 @@ export interface IAppState {
     setUserInformation(field: keyof IUserInformation, value: string): void;
     validationUserInformationOrder(): void;
     validationUserInformationContacts(): void;
-    cleanUserInformation(): void;
+    cleanOrderInformation(): void;
     setCardList(data: ICard[]): void;
     setPreview(item: ICard): void;
 }
@@ -193,7 +193,7 @@ export type TFormErrors = Partial<Record<keyof ISendOrder, string>>;
 6) setUserInformation(field: keyof IUserInformation, value: string): void - метод для сохрания информации вводимой прользователем в первой форме (способ оплаты, адрес, email, ноиер телефона);
 7) validationUserInformationOrder(): void - метод для валидации полей ввода информации прользователя в первой форме (способ оплаты, адрес);
 8) validationUserInformationContacts(): void - метод для валидации полей ввода информации прользователя во второй форме (способ оплаты, адрес);
-9) clearUserInformation(): void - метод для очистки полей ввода информации прользователя;
+9) clearOrderInformation(): void - метод для очистки информации о заказе (товары, цена);
 10) setCardList(data: ICard[]): void - метод для сохранения полученного с сервера каталога карточек товара.
 11) setPreview(item: ICard) - метод для получения открытой карточки товара;
 

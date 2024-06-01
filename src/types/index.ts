@@ -29,7 +29,7 @@ export interface IAppState {
     setUserInformation(field: keyof IUserInformation, value: string): void;
     validationUserInformationOrder(): void;
     validationUserInformationContacts(): void;
-    cleanUserInformation(): void;
+    cleanOrderInformation(): void;
     setCardList(data: ICard[]): void;
     setPreview(item: ICard): void;
 }

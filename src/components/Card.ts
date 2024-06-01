@@ -61,8 +61,12 @@ export class Card<T> extends Component<ICard> {
     }
 
     set category(value: keyof CardCategory) {
-        this.setText(this._category, value);
-        this._category.classList.add(`card__category_${settingsCategory[value]}`)
+        const className = Array.from(this._category.classList).filter(item => item.startsWith('card__category_'));
+        if(className) {
+            this._category.classList.remove(String(className))
+        }
+        this._category.classList.add(`card__category_${settingsCategory[value]}`);
+        this.setText(this._category, value)
     }
 
     status(value: boolean) {

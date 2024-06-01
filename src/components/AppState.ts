@@ -76,15 +76,9 @@ export class AppState extends Model<IAppState> {
         return Object.keys(errors).length === 0;
     }
 
-    cleanUserInformation(): void {
-        this.order = {
-            payment: '',
-            address: '',
-            email: '',
-            phone: '',
-            items: [],
-            total: null,
-        };
+    cleanOrderInformation(): void {
+        this.order.items =  [];
+        this.order.total = null;
     }
 
     setCardList(data: ICard[]): void {
